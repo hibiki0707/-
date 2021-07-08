@@ -1,0 +1,37 @@
+Press Start
+
+Please Stat
+
+Computer Graphics
+Standard
+CPU/GPU/AI
+Compute/Calculate：計算する
+Draw/Paint：描画
+Vector:ベクトル
+
+広い意味のベクトルというのは、
+数値（要素）を1次元的に並べたもの
+
+（1，2）：２Dベクトル
+（３，４，５）：３Dベクトル
+
+（３，４，５，６，７，８，９，１０）：8Dベクトル
+のように、広義のベクトルってのは
+値が並んでたらそれベクトル
+
+
+std::vector
+
+Velocity:速度
+Acceleration:加速度
+Position/Location/Point→座標
+Vertex:頂点
+Index:インデックス
+Deep learning:深層学習
+Current:「現在の」
+Present:「現在の」
+Last:「直前の」
+Next:「次の」
+Previous:「前の」
+Past:「過去の」
+Chrono:「時間の」

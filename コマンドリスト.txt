@@ -1,0 +1,99 @@
+Commandパターン
+
+コマンド(処理)とパラメータのセット
+を「コマンド」として記録する。
+→ラムダ式と相性がいい
+
+命令ごとに派生クラスを作る
+class Command;//基底クラス
+class NewCommand : public Command;//新規作成
+class BrushCommand : public Command;//ブラシ
+class BlurCommand : public Command;
+
+list<Command*> commandList;
+commandList.push_back(new NewCommand(512,512));
+commandList.push_back(new BrushCommand());
+commandList.push_back(new BlurCommand(10));
+
+for(auto& cmd : commandList){
+	cmd.Execute();
+}
+
+STLにはいろいろ便利な「コンテナ」があります。
+コンテナってのは、複数のオブジェクトをまとめて
+取り扱うための仕組み(配列もある意味、そう)
+STLには
+std::array<Command*,配列数> : 完全に固定長配列
+std::list<Command*> : リンクリスト(配列と似たようなもん)
+std::vector<Command*> : 動的配列と似たようなもん
+std::deque<Command*>
+std::stack<Command*>
+std::set<Command*>
+
+vectorとarrayの違い。
+vectorは要素数を増やしたり減らしたりができる。
+ということはpush_backのときに内部的に
+メモリの再確保が行われている。場合によっては
+とても時間がかかる。reserveとかで最大数を
+予約しておくと、マシにはなる。
+
+listとvectorの違い…。
+どちらも要素を自由に追加、削除ができる。
+最大の違いはvectorは「メモリが連続している」事を
+保証している。
+→あるサイズのメモリ領域を一気にコピーができる
+
+listはメモリが連続していない。
+なんだけど、プログラマにはvectorもlistも
+コンテナとして、同じように扱ってほしい。
+
+vectorだったら今0番目の要素にいて、アドレスを+1
+すれば次の要素になる。
+listの場合は今0番目の要素にいて、アドレスを+1
+すると、とんでもないところを指している。
+
+同じように扱うために出てきたのが「イテレータ」
+vector<int> v;
+auto itV = v.begin();//先頭要素を取得
+list<int> L;
+auto itL = L.begin();//先頭要素を取得
+
+++itVだと、vectorの次の要素
+++itLでも、listの次の要素
+
+じゃあ、vectorとlistどっちも動的に確保
+できますが、どっちがええのん？
+
+状況(用途)によりけりです。
+vectorは連続したメモリを使用します。
+(あらかじめだいたいのサイズがわかっている場合)
+push_backの挙動についてですが場合によっては
+解放と再確保が走るので、非常にコストがかかること
+がある。
+
+listの場合は、各要素がばらばらに存在して
+「次の要素がどこにあるのか」だけがわかるので
+push_back的なことをやっても1個分確保されるだけ
+だし、要素のアドレスも変更されない
+→要素の追加、削除が速い。
+
+しかし、vectorは「連続したメモリ」という
+何よりも強い武器がある。
+n番目の要素にアクセスする←168番目にアクセスしたい
+場合は、先頭+168のアドレスにモノがあるので、
+検索が非常に、非常に速い。
+連続してるので、メモリのコピーが楽。
+例えば、セーブファイルなどに使うにはvectorの
+方がいい。
+listは要素が増えれば増えるほど検索のコストがかかる。
+なので、listの場合は先頭から順々にアクセスする
+ようなものに向いている。
+
+stackとかdequeは、内部的にはlistと一緒。
+ただ、メソッドが違うだけです。
+
+stack→deque→list
+
+setは、「ソート済み」のコンテナを提供する
+要素の追加の時点で、ソートされる
+

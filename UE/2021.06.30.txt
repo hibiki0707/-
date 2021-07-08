@@ -1,0 +1,11 @@
+texcoordは、uv値なので実際にはfloat2
+
+u=texcoord.x:1番目の要素
+v=texcoord.y;2番目の要素
+texcoord.r:1番目の要素
+texcoord.g:2番目の要素
+
+オパシティマスクの仕組み
+if(f<0..333){
+return float4(0,0,0,0);
+        discard;	// 捨てる（なかったことにする）

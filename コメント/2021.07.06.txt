@@ -1,0 +1,51 @@
+
+内積
+A(ax,ay) B(bx,by)
+A・B＝｜A｜｜B|cosθ
+
+cos x
+sin y
+
+仮にAもBも大きさが1のベクトルだと仮定すると
+A・B＝ax*bx+ay*by
+
+ax=cosα
+ay=sinα
+bx=cosβ
+by=sinβ
+とすると
+A・B＝ax*bx+ay*by
+PcosαQcosβ+PsinαQsinβ
+PQ(cosαcosβ+sinαsinβ)
+=PQcis(α-β)=PQcos(β-α）=PQcosθ
+|A||B|cosθ
+
+
+θ=acos(Dot(A,B))
+
+θ=θ＞30°？30°：θ
+θ=min(θ,30°）
+
+cosαcosβ＋sinαsinβ
+=cos(α-β）=cos(β-α）
+
+
+加法定理
+sin(α±β)=sinαcosβ±sinβcosα
+cos(α±β)=cosαcosβ∓sinαsinβ
+
+内積では右回りか左回りか区別がつかない
+なので「外積」を使う
+
+
+外積
+A(ax,ay) B(bx,by)
+A*B=|A||B|sinθ
+A*B=ax*by-ay*by
+=cosαsinβ-sinαcosβ
+=sinβcosα-sinαcosβ
+=sin(β-α）
+B*A=bx*ay-by*ax
+=sin(α-β）
+
+右回り化左回り化は外積の符号を利用すればいい
